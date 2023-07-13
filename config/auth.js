@@ -40,13 +40,13 @@ export const authOptions = {
 
                 const json = await res.json()
 
-                /*if (json.error) {
+                if (json.error) {
                     throw new Error(json.error)
                 } else {
                     return json
-                }*/
+                }
 
-                return json
+                // return null
             }
         })
     ],
