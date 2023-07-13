@@ -8,7 +8,7 @@ export default async function handler(req, res) {
                 email: req.body.email
             }
         })
-
+        console.log('user: ', user)
         if (user) {
             const passwordResult = bcrypt.compareSync(req.body.password, user.password)
             if (passwordResult) {

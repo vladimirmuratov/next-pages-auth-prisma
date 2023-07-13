@@ -39,7 +39,7 @@ export const authOptions = {
                 })
 
                 const json = await res.json()
-                // console.log('json', json)
+                console.log('response: ', json)
 
                 if (json.error) {
                     throw new Error(json.error)
