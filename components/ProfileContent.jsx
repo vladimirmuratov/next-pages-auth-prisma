@@ -1,5 +1,5 @@
 import {useSession} from 'next-auth/react'
-import {Box, Card, CardBody, Divider, Heading, Text} from '@chakra-ui/react'
+import {Box, Divider, Heading, Text} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
 import {NewMessageForm} from '@/components/NewMessageForm'
 import {BASE_URL} from '@/config/defaultValues'

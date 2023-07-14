@@ -23,7 +23,6 @@ export const authOptions = {
                 email: {label: 'email', type: 'email', required: true},
                 password: {label: 'password', type: 'password', required: true},
                 image: {label: 'image', type: 'text'},
-                // flag: {label: 'flag', type: 'text'},
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials.password) return null

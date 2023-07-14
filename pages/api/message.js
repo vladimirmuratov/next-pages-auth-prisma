@@ -2,8 +2,8 @@ import prisma from '@/prisma'
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        console.log(req.body)
-        console.log(req.query)
+        // console.log(req.body)
+        // console.log(req.query)
         const email = req.query.email
         const message = req.body.message
 
@@ -24,6 +24,9 @@ export default async function handler(req, res) {
         const messages = await prisma.message.findMany({
             where: {
                 authorEmail: email
+            },
+            orderBy: {
+                createdAt: 'desc'
             }
         })
 
