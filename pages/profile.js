@@ -23,9 +23,10 @@ export default function Profile() {
 /*
 export async function getServerSideProps(context) {
     const session = await getServerSession(context.req, context.res, authOptions)
+    const clientData = session
     return {
         props: {
-            session,
+            clientData
         },
     }
 }

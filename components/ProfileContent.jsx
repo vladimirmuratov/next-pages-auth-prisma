@@ -1,5 +1,5 @@
 import {useSession} from 'next-auth/react'
-import {Box, Divider, Heading, Text} from '@chakra-ui/react'
+import {Avatar, Box, Divider, Heading, Skeleton, Stack, Text} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
 import {NewMessageForm} from '@/components/NewMessageForm'
 import {BASE_URL} from '@/config/defaultValues'
@@ -7,26 +7,35 @@ import {Message} from '@/components/Message'
 
 export const ProfileContent = () => {
     const session = useSession()
-    // console.log('session', session)
-    const [messages, setMessages] = useState([])
+    const [messages, setMessages] = useState(undefined)
 
     const getAllMessages = async () => {
         const res = await fetch(`${BASE_URL}/api/message?email=${session?.data?.user?.email}`)
         const json = await res.json()
-        // console.log('all messages', json)
         setMessages(json)
     }
 
     useEffect(() => {
+        let timeout
         if (session?.data?.user?.email) {
-            getAllMessages()
+            timeout = setTimeout(() => {
+                getAllMessages()
+            }, 3000)
+        }
+
+        return () => {
+            clearTimeout(timeout)
         }
     }, [session])
     return (
         <Box display="flex" flexDir="column" gap={1}>
-            <Box display="flex">
-                {session?.data?.user?.image &&
-                    <img src={session?.data?.user?.image} alt="pic" width={100} height={100}/>}
+            <Box display="flex" gap={2}>
+                {session?.data?.user?.image
+                    // <img src={session?.data?.user?.image} alt="pic" width={100} height={100}/>
+                    ? <Avatar src={session?.data?.user?.image} name="user" loading="eager" size="lg"/>
+                    : <Avatar/>
+                }
+
                 <Box>
                     <Heading size="md">{session?.data?.user?.name}</Heading>
                     <Text fontSize={{base: '14px', md: '16px'}}>{session?.data?.user?.email}</Text>
@@ -35,12 +44,19 @@ export const ProfileContent = () => {
             <Divider my={10}/>
             <NewMessageForm email={session?.data?.user?.email} onRefetchMessages={getAllMessages}/>
             <Divider my={5}/>
-            {messages.length
+            {Array.isArray(messages) && messages.length
                 ? messages.map((m) => (
                     <Message key={m.id} message={m}/>
                 ))
-                : <Heading>Not found messages</Heading>
+                : !messages
+                    ? (<Stack>
+                        <Skeleton height="20px"/>
+                        <Skeleton height="20px"/>
+                        <Skeleton height="20px"/>
+                    </Stack>)
+                    : <></>
             }
+            {Array.isArray(messages) && !messages.length && <Heading>Not found messages</Heading>}
         </Box>
     )
 }
