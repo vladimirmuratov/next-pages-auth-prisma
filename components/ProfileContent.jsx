@@ -8,11 +8,29 @@ import {Message} from '@/components/Message'
 export const ProfileContent = () => {
     const session = useSession()
     const [messages, setMessages] = useState(undefined)
+    const [isLoading, setLoading] = useState(false)
 
     const getAllMessages = async () => {
         const res = await fetch(`${BASE_URL}/api/message?email=${session?.data?.user?.email}`)
         const json = await res.json()
         setMessages(json)
+    }
+
+    const onDeleteMessage = async (id) => {
+        // console.log(id)
+        setLoading(true)
+        try {
+            const res = await fetch(`${BASE_URL}/api/message/${id}`, {
+                method: 'DELETE'
+            })
+            const json = await res.json()
+            // console.log('json', json)
+            if (json) setLoading(false)
+            if (json.id) getAllMessages()
+        } catch (e) {
+            setLoading(false)
+            console.log(e.messages)
+        }
     }
 
     useEffect(() => {
@@ -46,7 +64,7 @@ export const ProfileContent = () => {
             <Divider my={5}/>
             {Array.isArray(messages) && messages.length
                 ? messages.map((m) => (
-                    <Message key={m.id} message={m}/>
+                    <Message key={m.id} message={m} onDelete={onDeleteMessage} isLoading={isLoading}/>
                 ))
                 : !messages
                     ? (<Stack>

@@ -1,4 +1,4 @@
-import {Button, FormControl, FormErrorMessage, FormHelperText, FormLabel, Textarea} from '@chakra-ui/react'
+import {Button, FormControl, FormErrorMessage, FormLabel, Textarea} from '@chakra-ui/react'
 import {useState} from 'react'
 import {BASE_URL} from '@/config/defaultValues'
 
