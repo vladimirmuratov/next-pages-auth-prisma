@@ -48,6 +48,17 @@ export const ProfileContent = ({users}) => {
             clearTimeout(timeout)
         }
     }, [session])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            getAllMessages()
+        }, 30000)
+
+        return(() => {
+            clearInterval(interval)
+        })
+    }, [])
+
     return (
         <Box display="flex" flexDir="column" gap={1}>
             <Box display="flex" gap={2}>
