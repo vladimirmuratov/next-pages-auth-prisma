@@ -49,7 +49,8 @@ export const ProfileContent = ({users}) => {
         }
     }, [session])
 
-    useEffect(() => {
+    //-------- Запрос к БД каждые 30 сек ----------
+    /*useEffect(() => {
         const interval = setInterval(() => {
             getAllMessages()
         }, 30000)
@@ -57,7 +58,7 @@ export const ProfileContent = ({users}) => {
         return(() => {
             clearInterval(interval)
         })
-    }, [])
+    }, [])*/
 
     return (
         <Box display="flex" flexDir="column" gap={1}>
