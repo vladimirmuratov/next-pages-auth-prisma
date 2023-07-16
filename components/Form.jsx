@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import {GoogleBtn} from '@/components/auth-buttons/GoogleBtn'
 import {YandexBtn} from '@/components/auth-buttons/YandexBtn'
-import {MailRuBtn} from '@/components/auth-buttons/MailRuBtn'
+// import {MailRuBtn} from '@/components/auth-buttons/MailRuBtn'
 import {ViewIcon, ViewOffIcon} from '@chakra-ui/icons'
 import {useEffect, useState} from 'react'
 import {signIn} from 'next-auth/react'
@@ -142,7 +142,7 @@ export const Form = ({signUp = false}) => {
                  m="0 auto">
                 <GoogleBtn/>
                 <YandexBtn/>
-                <MailRuBtn/>
+                {/*<MailRuBtn/>*/}
             </Box>
         </Box>
     )

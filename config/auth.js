@@ -1,6 +1,6 @@
 import GoogleProvider from 'next-auth/providers/google'
 import YandexProvider from 'next-auth/providers/yandex'
-import MailRuProvider from 'next-auth/providers/mailru'
+// import MailRuProvider from 'next-auth/providers/mailru'
 import Credentials from 'next-auth/providers/credentials'
 import {BASE_URL} from '@/config/defaultValues'
 
