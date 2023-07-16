@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import {Box, Heading} from '@chakra-ui/react'
-import {getServerSession} from 'next-auth/next'
-import {authOptions} from '@/config/auth'
+import {Box} from '@chakra-ui/react'
 import {ProfileContent} from '@/components/ProfileContent'
+import {BASE_URL} from '@/config/defaultValues'
 
-export default function Profile() {
+export default function Profile({users}) {
     return (
         <>
             <Head>
@@ -14,20 +13,19 @@ export default function Profile() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Box p={{base: 2, md: 4}}>
-                <ProfileContent/>
+                <ProfileContent users={users}/>
             </Box>
         </>
     )
 }
 
-/*
 export async function getServerSideProps(context) {
-    const session = await getServerSession(context.req, context.res, authOptions)
-    const clientData = session
-    return {
+    const res = await fetch(`${BASE_URL}/api/user/all`)
+    const users = await res.json()
+
+    return{
         props: {
-            clientData
-        },
+            users
+        }
     }
 }
-*/

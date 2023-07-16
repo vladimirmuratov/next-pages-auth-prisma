@@ -4,9 +4,12 @@ import {useEffect, useState} from 'react'
 import {NewMessageForm} from '@/components/NewMessageForm'
 import {BASE_URL} from '@/config/defaultValues'
 import {Message} from '@/components/Message'
+import {UsersList} from '@/components/UsersList'
 
-export const ProfileContent = () => {
+export const ProfileContent = ({users}) => {
     const session = useSession()
+    const [selectUser, setSelectUser] = useState(null)
+    // console.log('selectUser', selectUser)
     const [messages, setMessages] = useState(undefined)
     const [isLoading, setLoading] = useState(false)
 
@@ -38,7 +41,7 @@ export const ProfileContent = () => {
         if (session?.data?.user?.email) {
             timeout = setTimeout(() => {
                 getAllMessages()
-            }, 3000)
+            }, 1000)
         }
 
         return () => {
@@ -60,11 +63,25 @@ export const ProfileContent = () => {
                 </Box>
             </Box>
             <Divider my={10}/>
-            <NewMessageForm email={session?.data?.user?.email} onRefetchMessages={getAllMessages}/>
+            <UsersList users={users} onSelect={setSelectUser} selectUserId={selectUser?.id}/>
+            <Divider my={10}/>
+            <NewMessageForm
+                authorEmail={session?.data?.user?.email}
+                name={session?.data?.user?.name}
+                selectUser={selectUser}
+                onClearSelectUser={setSelectUser}
+                onRefetchMessages={getAllMessages}
+            />
             <Divider my={5}/>
             {Array.isArray(messages) && messages.length
                 ? messages.map((m) => (
-                    <Message key={m.id} message={m} onDelete={onDeleteMessage} isLoading={isLoading}/>
+                    <Message
+                        key={m.id}
+                        message={m}
+                        onDelete={onDeleteMessage}
+                        isLoading={isLoading}
+                        isOwner={m.authorEmail === session?.data?.user?.email}
+                    />
                 ))
                 : !messages
                     ? (<Stack>

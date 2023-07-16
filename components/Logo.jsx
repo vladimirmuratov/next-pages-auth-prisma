@@ -1,10 +1,13 @@
 import Link from 'next/link'
-import homerImg from '@/public/homer.png'
+import {Avatar} from '@chakra-ui/react'
 
-export const Logo = () => {
+export const Logo = ({imgUrl = ''}) => {
     return (
         <Link href="/">
-            <img src={homerImg.src} alt="pic" width={50} height={50}/>
+            {imgUrl
+                ? <Avatar src={imgUrl} name="logo"/>
+                : <Avatar style={{visibility: 'hidden'}}/>
+            }
         </Link>
     )
 }

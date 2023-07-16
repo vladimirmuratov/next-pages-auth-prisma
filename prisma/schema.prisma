@@ -23,6 +23,7 @@ model Message {
   id            Int        @id @default(autoincrement())
   createdAt     DateTime   @default(now())
   message       String
+  to            String
   author        User       @relation(fields: [authorEmail], references: [email])
   authorEmail   String
 }

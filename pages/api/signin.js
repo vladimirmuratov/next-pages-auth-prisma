@@ -1,5 +1,6 @@
 import prisma from '@/prisma'
 import bcrypt from 'bcryptjs'
+import {signUp} from '@/utils/signUp'
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
@@ -17,6 +18,9 @@ export default async function handler(req, res) {
             } else {
                 res.status(401).json({error: 'Пароль не верен'})
             }
+        } else if (!user && req.body.signUp) {
+            // console.log('SUGNUP', req.body)
+            await signUp(req, res)
         } else {
             res.status(401).json({error: 'email не верен'})
         }

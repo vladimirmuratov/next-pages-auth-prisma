@@ -22,7 +22,7 @@ export const Header = () => {
             justifyContent="space-between"
             alignItems="center"
         >
-            <Logo/>
+            <Logo imgUrl={session?.data?.user?.image}/>
             <Navigation links={navLinks} session={session?.data}/>
             <Navigation links={authLinks} session={session?.data} isAuthLinks={true} onSignOut={signOut}/>
             <IconButton

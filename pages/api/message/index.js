@@ -4,26 +4,31 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         // console.log(req.body)
         // console.log(req.query)
-        const email = req.query.email
+        const authorEmail = req.body.authorEmail
         const message = req.body.message
+        const to = req.body.to
 
         const newMessage = await prisma.message.create({
             data: {
                 message: message,
-                authorEmail: email
+                authorEmail: authorEmail,
+                to: to
             }
         })
 
         res.status(201).json({newMessage})
     }
 
-    if(req.method === 'GET'){
+    if (req.method === 'GET') {
         const email = req.query.email
         // console.log('email query', email)
 
         const messages = await prisma.message.findMany({
             where: {
-                authorEmail: email
+                OR: [
+                    {authorEmail: email},
+                    {to: email}
+                ]
             },
             orderBy: {
                 createdAt: 'desc'

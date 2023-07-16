@@ -57,7 +57,7 @@ export const Form = ({signUp = false}) => {
         }
 
         const res = await signIn('credentials', {...payload})
-        console.log('form res: ', res)
+        // console.log('form res: ', res)
         if (res && res.status === 200) {
             await router.push('/profile')
             reset()
