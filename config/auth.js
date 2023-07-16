@@ -14,10 +14,10 @@ export const authOptions = {
             clientId: process.env.YANDEX_CLIENT_ID,
             clientSecret: process.env.YANDEX_CLIENT_SECRET
         }),
-        MailRuProvider({
+        /*MailRuProvider({
             clientId: process.env.MAILRU_CLIENT_ID,
             clientSecret: process.env.MAILRU_CLIENT_SECRET
-        }),
+        }),*/
         Credentials({
             credentials: {
                 email: {label: 'email', type: 'email', required: true},
