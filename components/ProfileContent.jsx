@@ -5,11 +5,11 @@ import {NewMessageForm} from '@/components/NewMessageForm'
 import {BASE_URL} from '@/config/defaultValues'
 import {Message} from '@/components/Message'
 import {UsersList} from '@/components/UsersList'
+import {FormAddVideo} from '@/components/FormAddVideo'
 
 export const ProfileContent = ({users}) => {
     const session = useSession()
     const [selectUser, setSelectUser] = useState(null)
-    // console.log('selectUser', selectUser)
     const [messages, setMessages] = useState(undefined)
     const [isLoading, setLoading] = useState(false)
 
@@ -20,14 +20,12 @@ export const ProfileContent = ({users}) => {
     }
 
     const onDeleteMessage = async (id) => {
-        // console.log(id)
         setLoading(true)
         try {
             const res = await fetch(`${BASE_URL}/api/message/${id}`, {
                 method: 'DELETE'
             })
             const json = await res.json()
-            // console.log('json', json)
             if (json) setLoading(false)
             if (json.id) getAllMessages()
         } catch (e) {
@@ -64,7 +62,6 @@ export const ProfileContent = ({users}) => {
         <Box display="flex" flexDir="column" gap={1}>
             <Box display="flex" gap={2}>
                 {session?.data?.user?.image
-                    // <img src={session?.data?.user?.image} alt="pic" width={100} height={100}/>
                     ? <Avatar src={session?.data?.user?.image} name="user" loading="eager" size="lg"/>
                     : <Avatar/>
                 }
@@ -74,6 +71,8 @@ export const ProfileContent = ({users}) => {
                     <Text fontSize={{base: '14px', md: '16px'}}>{session?.data?.user?.email}</Text>
                 </Box>
             </Box>
+            <Divider my={10}/>
+            <FormAddVideo userEmail={session?.data?.user?.email}/>
             <Divider my={10}/>
             <UsersList users={users} onSelect={setSelectUser} selectUserId={selectUser?.id}/>
             <Divider my={10}/>

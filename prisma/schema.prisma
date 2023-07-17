@@ -17,6 +17,7 @@ model User {
    password String
    image    String?
    messages Message[]
+   videos   Video[]
 }
 
 model Message {
@@ -26,4 +27,11 @@ model Message {
   to            String
   author        User       @relation(fields: [authorEmail], references: [email])
   authorEmail   String
+}
+
+model Video {
+  id            Int        @id @default(autoincrement())
+  url           String
+  user          User       @relation(fields: [userEmail], references: [email])
+  userEmail     String
 }
