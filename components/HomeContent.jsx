@@ -1,10 +1,10 @@
 import {Box, Heading, Text} from '@chakra-ui/react'
 import {useSession} from 'next-auth/react'
-import YouTube from 'react-youtube'
+import {VideosList} from '@/components/VideosList'
 
-export const HomeContent = () => {
+export const HomeContent = ({videos = []}) => {
     const session = useSession()
-    // console.log('session', session)
+
     return (
         <>
             <Box>
@@ -15,7 +15,7 @@ export const HomeContent = () => {
                         : 'You need authorized'
                     }
                 </Text>
-                <YouTube videoId="cJpVlFMHz1E"/>
+                <VideosList videos={videos}/>
             </Box>
         </>
     )

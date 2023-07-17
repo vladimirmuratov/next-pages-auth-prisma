@@ -5,8 +5,7 @@ import {getServerSession} from 'next-auth/next'
 import {authOptions} from '@/config/auth'
 import {BASE_URL} from '@/config/defaultValues'
 
-export default function Home({userData}) {
-    // console.log('props', userData)
+export default function Home({userData, videos}) {
     if (userData) {
         const payload = {
             name: userData.user.name,
@@ -37,7 +36,7 @@ export default function Home({userData}) {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Box p={{base: 2, md: 4}}>
-                <HomeContent/>
+                <HomeContent videos={videos}/>
             </Box>
         </>
     )
@@ -46,11 +45,14 @@ export default function Home({userData}) {
 export async function getServerSideProps(context) {
     const session = await getServerSession(context.req, context.res, authOptions)
     const userData = session
-    // console.log('userData', userData)
+
+    const res = await fetch(`${BASE_URL}/api/video?userEmail=${userData?.user?.email}`)
+    const videos = await res.json()
 
     return {
         props: {
-            userData
+            userData,
+            videos
         }
     }
 }

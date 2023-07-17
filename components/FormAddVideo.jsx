@@ -13,7 +13,7 @@ export const FormAddVideo = ({userEmail}) => {
             setLoading(true)
             const payload = {
                 userEmail,
-                url
+                url: url.trim()
             }
             const res = await fetch(`${BASE_URL}/api/video`, {
                 method: 'POST',
@@ -24,9 +24,9 @@ export const FormAddVideo = ({userEmail}) => {
             })
 
             const json = await res.json()
-            console.log('json', json)
-            if (json.status === 201) {
+            if (res.status === 201) {
                 setLoading(false)
+                setUrl('')
             } else {
                 setLoading(false)
             }

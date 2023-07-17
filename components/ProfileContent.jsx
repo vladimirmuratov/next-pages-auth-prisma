@@ -10,7 +10,6 @@ import {FormAddVideo} from '@/components/FormAddVideo'
 export const ProfileContent = ({users}) => {
     const session = useSession()
     const [selectUser, setSelectUser] = useState(null)
-    // console.log('selectUser', selectUser)
     const [messages, setMessages] = useState(undefined)
     const [isLoading, setLoading] = useState(false)
 
@@ -21,14 +20,12 @@ export const ProfileContent = ({users}) => {
     }
 
     const onDeleteMessage = async (id) => {
-        // console.log(id)
         setLoading(true)
         try {
             const res = await fetch(`${BASE_URL}/api/message/${id}`, {
                 method: 'DELETE'
             })
             const json = await res.json()
-            // console.log('json', json)
             if (json) setLoading(false)
             if (json.id) getAllMessages()
         } catch (e) {
@@ -65,7 +62,6 @@ export const ProfileContent = ({users}) => {
         <Box display="flex" flexDir="column" gap={1}>
             <Box display="flex" gap={2}>
                 {session?.data?.user?.image
-                    // <img src={session?.data?.user?.image} alt="pic" width={100} height={100}/>
                     ? <Avatar src={session?.data?.user?.image} name="user" loading="eager" size="lg"/>
                     : <Avatar/>
                 }
