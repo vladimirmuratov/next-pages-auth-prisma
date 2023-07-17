@@ -1,5 +1,4 @@
 import prisma from '@/prisma'
-import bcrypt from 'bcryptjs'
 import {signUp} from '@/utils/signUp'
 
 export default async function handler(req, res) {

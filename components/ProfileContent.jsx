@@ -5,6 +5,7 @@ import {NewMessageForm} from '@/components/NewMessageForm'
 import {BASE_URL} from '@/config/defaultValues'
 import {Message} from '@/components/Message'
 import {UsersList} from '@/components/UsersList'
+import {FormAddVideo} from '@/components/FormAddVideo'
 
 export const ProfileContent = ({users}) => {
     const session = useSession()
@@ -74,6 +75,8 @@ export const ProfileContent = ({users}) => {
                     <Text fontSize={{base: '14px', md: '16px'}}>{session?.data?.user?.email}</Text>
                 </Box>
             </Box>
+            <Divider my={10}/>
+            <FormAddVideo userEmail={session?.data?.user?.email}/>
             <Divider my={10}/>
             <UsersList users={users} onSelect={setSelectUser} selectUserId={selectUser?.id}/>
             <Divider my={10}/>
