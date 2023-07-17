@@ -5,7 +5,7 @@ import {navLinks} from '@/config/navLinks'
 import {authLinks} from '@/config/authLinks'
 import {HamburgerIcon} from '@chakra-ui/icons'
 import {MobileMenu} from '@/components/MobileMenu'
-import { useSession, signIn, signOut } from "next-auth/react"
+import {signOut, useSession} from 'next-auth/react'
 
 export const Header = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -22,7 +22,7 @@ export const Header = () => {
             justifyContent="space-between"
             alignItems="center"
         >
-            <Logo imgUrl={session?.data?.user?.image}/>
+            <Logo imgUrl={session?.data?.user?.image} status={session.status}/>
             <Navigation links={navLinks} session={session?.data}/>
             <Navigation links={authLinks} session={session?.data} isAuthLinks={true} onSignOut={signOut}/>
             <IconButton

@@ -1,13 +1,19 @@
 import Link from 'next/link'
 import {Avatar} from '@chakra-ui/react'
 
-export const Logo = ({imgUrl = ''}) => {
+export const Logo = ({imgUrl = '', status}) => {
     return (
-        <Link href="/">
-            {imgUrl
-                ? <Avatar src={imgUrl} name="logo"/>
-                : <Avatar style={{visibility: 'hidden'}}/>
+        <>
+            {status === 'unauthenticated'
+                ? <Avatar style={{visibility: 'hidden'}}/>
+                : status === 'authenticated' && imgUrl
+                    ? <Link href="/">
+                        <Avatar src={imgUrl} name="logo"/>
+                    </Link>
+                    : <Link href="/">
+                        <Avatar/>
+                    </Link>
             }
-        </Link>
+        </>
     )
 }
