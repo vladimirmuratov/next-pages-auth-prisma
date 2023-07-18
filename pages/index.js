@@ -5,7 +5,8 @@ import {getServerSession} from 'next-auth/next'
 import {authOptions} from '@/config/auth'
 import {BASE_URL} from '@/config/defaultValues'
 
-export default function Home({userData, videos}) {
+export default function Home({userData}) {
+    // Если авторизовался кнопкой Google, Yandex, etc
     if (userData) {
         const payload = {
             name: userData.user.name,
@@ -36,7 +37,7 @@ export default function Home({userData, videos}) {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Box p={{base: 2, md: 4}}>
-                <HomeContent videos={videos}/>
+                <HomeContent/>
             </Box>
         </>
     )
@@ -51,8 +52,7 @@ export async function getServerSideProps(context) {
 
     return {
         props: {
-            userData,
-            videos
+            userData
         }
     }
 }

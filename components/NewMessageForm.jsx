@@ -8,7 +8,6 @@ export const NewMessageForm = ({authorEmail, name, selectUser, onClearSelectUser
     const [isLoading, setLoading] = useState(false)
     const handleSubmit = async (event) => {
         event.preventDefault()
-        // console.log(message)
         if (!message) {
             setIsError(true)
         } else if(message && selectUser.email) {
