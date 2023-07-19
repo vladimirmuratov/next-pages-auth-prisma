@@ -44,7 +44,7 @@ export const HomeContent = () => {
     return (
         <>
             <Box>
-                <Heading size="xl">Play list</Heading>
+                <Heading size="xl">YouTube video</Heading>
                 <Text>
                     {session.data
                         ? 'Add url into Profile'

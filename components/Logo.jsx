@@ -10,8 +10,8 @@ export const Logo = ({imgUrl = '', status}) => {
                     ? <Link href="/">
                         <Avatar src={imgUrl} name="logo"/>
                     </Link>
-                    : <Link href="/">
-                        <Avatar/>
+                    : status === 'loading' && <Link href="/">
+                        <Avatar style={{visibility: 'hidden'}}/>
                     </Link>
             }
         </>
