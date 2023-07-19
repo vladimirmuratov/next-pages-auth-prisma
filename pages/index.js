@@ -44,15 +44,9 @@ export default function Home({userData}) {
 }
 
 export async function getServerSideProps(context) {
-    const session = await getServerSession(context.req, context.res, authOptions)
-    const userData = session
-
-    const res = await fetch(`${BASE_URL}/api/video?userEmail=${userData?.user?.email}`)
-    const videos = await res.json()
-
     return {
         props: {
-            userData
+            userData: await getServerSession(context.req, context.res, authOptions)
         }
     }
 }

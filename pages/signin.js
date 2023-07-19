@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import {Box} from '@chakra-ui/react'
-import {Form} from '@/components/Form'
+import {FormAuth} from '@/components/FormAuth'
 
 export default function Signin() {
     return (
@@ -12,7 +12,7 @@ export default function Signin() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Box>
-                <Form/>
+                <FormAuth/>
             </Box>
         </>
     )

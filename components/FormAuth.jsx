@@ -20,7 +20,7 @@ import {useEffect, useState} from 'react'
 import {signIn} from 'next-auth/react'
 import {useRouter} from 'next/router'
 
-export const Form = ({signUp = false}) => {
+export const FormAuth = ({signUp = false}) => {
     const toast = useToast()
     const textTitle = signUp ? 'Sign Up' : 'Sign In'
     const flag = signUp ? 'SignUp' : 'SignIn'
@@ -52,12 +52,10 @@ export const Form = ({signUp = false}) => {
         setLoading(true)
         const payload = {
             ...data,
-            flag,
-            redirect: false
+            flag
         }
 
-        const res = await signIn('credentials', {...payload})
-        // console.log('form res: ', res)
+        const res = await signIn('credentials', {...payload, redirect: false})
         if (res && res.status === 200) {
             await router.push('/profile')
             reset()
