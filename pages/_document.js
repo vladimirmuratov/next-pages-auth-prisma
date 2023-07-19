@@ -5,6 +5,9 @@ export default function Document() {
     <Html lang="en">
         <Head>
             <meta httpEquiv="Permissions-Policy" content="interest-cohort=()"/>
+            {/*УДАЛИТЬ ПРИ PRODUCTION!!!*/}
+            <meta name="robots" content="noindex,nofollow" key="robots"/>
+            {/*-----------------------*/}
         </Head>
       <body>
         <Main />
