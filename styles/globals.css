@@ -9,3 +9,8 @@
   --blue: #1e88e5;
   --dark-blue: #1565c0;
 }
+
+/*Slider*/
+/*swiper-container::part(button-prev){
+  color: green;
+}*/

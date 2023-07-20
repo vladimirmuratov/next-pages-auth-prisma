@@ -1,9 +1,10 @@
-import {Box, Heading, Text} from '@chakra-ui/react'
+import {Box, Divider, Heading, Text} from '@chakra-ui/react'
 import {useSession} from 'next-auth/react'
 import {VideosList} from '@/components/VideosList'
 import {useEffect, useState} from 'react'
 import {getVideosList} from '@/utils/getVideosList'
 import {deleteVideoItem} from '@/utils/deleteVideoItem'
+import {Slider} from '@/components/Slider'
 
 export const HomeContent = () => {
     const session = useSession()
@@ -42,17 +43,17 @@ export const HomeContent = () => {
     }, [session])
 
     return (
-        <>
-            <Box>
-                <Heading size="xl">YouTube video</Heading>
-                <Text>
-                    {session.data
-                        ? 'Add url into Profile'
-                        : 'You need authorized'
-                    }
-                </Text>
-                <VideosList videos={videos} onDelete={onDeleteHandle} isLoading={isLoading}/>
-            </Box>
-        </>
+        <Box>
+            <Slider/>
+            <Divider my={10}/>
+            <Heading size="xl">YouTube video</Heading>
+            <Text>
+                {session.data
+                    ? 'Add url into Profile'
+                    : 'You need authorized'
+                }
+            </Text>
+            <VideosList videos={videos} onDelete={onDeleteHandle} isLoading={isLoading}/>
+        </Box>
     )
 }
