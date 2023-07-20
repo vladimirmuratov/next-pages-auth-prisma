@@ -10,6 +10,7 @@ export const HomeContent = () => {
     const session = useSession()
     const [videos, setVideos] = useState([])
     const [isLoading, setLoading] = useState(false)
+    const isAuth = !!session.data
 
     const onDeleteHandle = async (id) => {
         const res = await deleteVideoItem(id)
@@ -53,7 +54,7 @@ export const HomeContent = () => {
                     : 'You need authorized'
                 }
             </Text>
-            <VideosList videos={videos} onDelete={onDeleteHandle} isLoading={isLoading}/>
+            <VideosList isAuth={isAuth} videos={videos} onDelete={onDeleteHandle} isLoading={isLoading}/>
         </Box>
     )
 }

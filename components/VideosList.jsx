@@ -1,7 +1,7 @@
 import {Grid, GridItem, Heading, Skeleton} from '@chakra-ui/react'
 import {VideoItem} from '@/components/VideoItem'
 
-export const VideosList = ({videos = [], onDelete, isLoading = false}) => {
+export const VideosList = ({isAuth = false, videos = [], onDelete, isLoading = false}) => {
 
     return (
         <Grid
@@ -26,7 +26,9 @@ export const VideosList = ({videos = [], onDelete, isLoading = false}) => {
                             <Skeleton height="150px"></Skeleton>
                         </GridItem>
                     </>)
-                    : <Heading>Videos not found</Heading>
+                    : isAuth && !videos.length
+                        ? <Heading>Video list is empty</Heading>
+                        : <></>
             }
         </Grid>
     )
