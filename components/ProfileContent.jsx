@@ -2,7 +2,7 @@ import {useSession} from 'next-auth/react'
 import {Avatar, Box, Divider, Heading, Text} from '@chakra-ui/react'
 import {FormAddVideo} from '@/components/FormAddVideo'
 
-export const ProfileContent = ({users}) => {
+export const ProfileContent = () => {
     const session = useSession()
     const email = session?.data?.user?.email
     const name = session?.data?.user?.name

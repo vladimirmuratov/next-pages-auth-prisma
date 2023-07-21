@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import {Box} from '@chakra-ui/react'
 import {ProfileContent} from '@/components/ProfileContent'
-import {BASE_URL} from '@/config/defaultValues'
 
-export default function Profile({users}) {
+export default function Profile() {
     return (
         <>
             <Head>
@@ -13,19 +12,8 @@ export default function Profile({users}) {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Box p={{base: 2, md: 4}}>
-                <ProfileContent users={users}/>
+                <ProfileContent/>
             </Box>
         </>
     )
-}
-
-export async function getServerSideProps() {
-    const res = await fetch(`${BASE_URL}/api/user/all`)
-    const users = await res.json()
-
-    return{
-        props: {
-            users
-        }
-    }
 }
