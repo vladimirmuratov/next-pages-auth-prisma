@@ -26,7 +26,7 @@ export const Navigation = ({links = [], session = null, isAuthLinks = false, onS
                             {link.label}
                         </Link>
                     )
-                } else if (!isAuthLinks && !session && link.label !== 'Profile') {
+                } else if (!isAuthLinks && !session && link.label !== 'Profile' && link.label !== 'Messages') {
                     return (
                         <Link
                             key={link.id}
