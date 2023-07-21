@@ -22,7 +22,8 @@ export const Message = ({message, onDelete, isLoading, isOwner}) => (
             <Box display="flex" alignItems="center" gap={2} mb={2}>
                 <Text
                     as="span" p={1}
-                    bgColor="gray.100" fontSize="xs"
+                    bgColor="gray.50" fontSize="xs"
+                    color="gray.700"
                     borderRadius="sm"
                 >
                     {new Date(message.createdAt)
@@ -34,9 +35,9 @@ export const Message = ({message, onDelete, isLoading, isOwner}) => (
                             minute: 'numeric'
                         })}
                 </Text>
-                <Text as="span" p={1} bgColor="gray.100" fontSize="xs" borderRadius="sm">{message.authorEmail}</Text>
+                <Text as="span" p={1} bgColor="gray.50" color="gray.700" fontSize="xs" borderRadius="sm">{message.authorEmail}</Text>
             </Box>
-            <Text>{message.message}</Text>
+            <Text color="gray.700">{message.message}</Text>
         </CardBody>
     </Card>
 )

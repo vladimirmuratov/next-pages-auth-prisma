@@ -10,7 +10,7 @@ export const NewMessageForm = ({authorEmail, name, selectUser, onClearSelectUser
         event.preventDefault()
         if (!message) {
             setIsError(true)
-        } else if(message && selectUser.email) {
+        } else if (message && selectUser.email) {
             setLoading(true)
             const payload = {
                 authorEmail: authorEmail,
@@ -27,7 +27,7 @@ export const NewMessageForm = ({authorEmail, name, selectUser, onClearSelectUser
             })
 
             const json = await res.json()
-            // console.log('res New Message', json)
+
             if (json) {
                 onClearSelectUser(null)
                 setMessage('')
@@ -45,8 +45,8 @@ export const NewMessageForm = ({authorEmail, name, selectUser, onClearSelectUser
     return (
         <Box>
             <Box mb={10} display="flex" flexDir="column" gap={1}>
-                <Heading size="md">From: <Box as="span" bgColor="gray.100" px={2}>{name}</Box></Heading>
-                <Heading size="md">To: <Box as="span" bgColor="gray.100" px={2}>{selectUser?.name}</Box></Heading>
+                <Heading size="md">From: <Box as="span" px={2}>{name}</Box></Heading>
+                <Heading size="md">To: <Box as="span" px={2}>{selectUser?.name}</Box></Heading>
             </Box>
             <form onSubmit={handleSubmit}>
                 <FormControl isInvalid={isError}>

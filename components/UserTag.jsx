@@ -4,12 +4,15 @@ export const UserTag = ({user, onSelect, selectUserId}) => {
     return (
         <ListItem
             onClick={() => onSelect(user)}
-            border="1px solid gray"
+            border="1px solid"
+            borderColor={user.id === selectUserId ? 'red.500': 'gray.500'}
             borderRadius="md"
             p={1}
             cursor="pointer"
-            _hover={{transform: 'translateY(-5px)'}}
+            // _hover={{transform: 'translateY(-5px)'}}
+            _hover={{transform: 'scale(1.03)'}}
             bgColor={user.id === selectUserId ? 'gray.100': ''}
+            color={user.id === selectUserId ? 'gray.700': ''}
             style={{transition: 'all 0.3s'}}
         >
             <Flex>
