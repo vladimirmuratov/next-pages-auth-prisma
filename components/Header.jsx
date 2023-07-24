@@ -23,7 +23,9 @@ export const Header = () => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            position="relative"
+            position="sticky"
+            top={0}
+            zIndex={10}
         >
             <Logo imgUrl={session?.data?.user?.image} status={session.status}/>
             <Navigation links={navLinks} session={session?.data}/>

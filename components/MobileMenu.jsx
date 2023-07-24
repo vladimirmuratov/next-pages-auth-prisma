@@ -26,7 +26,7 @@ export const MobileMenu = ({session = null, onClose, isOpen, navLinks = [], auth
                 <DrawerCloseButton/>
                 <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
                 <DrawerBody>
-                    <List>
+                    <List spacing={1}>
                         {navLinks.map((link) => {
                             if (!session && link.label !== 'Profile') {
                                 return (
@@ -44,7 +44,7 @@ export const MobileMenu = ({session = null, onClose, isOpen, navLinks = [], auth
                         })}
                     </List>
                     <Divider my={2}/>
-                    <List>
+                    <List spacing={1}>
                         {authLinks.map((link) => {
                             if (session && link.label === 'Sign Out') {
                                 return (
